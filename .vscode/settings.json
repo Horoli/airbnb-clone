@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "C:\\Users\\sunha\\.virtualenvs\\airbnb-WFumru81\\Scripts\\python.exe",
+    "python.pythonPath": "C:\\Users\\Sunha Park\\.virtualenvs\\airbnb-clone-wTwCEqqo\\Scripts\\python.exe",
     "python.linting.flake8Enabled": true,
     "python.formatting.provider": "black",
     "editor.formatOnSave": true,
