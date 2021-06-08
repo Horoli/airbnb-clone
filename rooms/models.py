@@ -99,18 +99,15 @@ class Room(core_models.TimeStampedModel):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.city = "potato"
+        self.city = str.capitalize(self.city)
         super().save(*args, **kwargs)
 
     # 전체 리뷰 평균
     def total_rationg(self):
         all_reviews = self.reviews.all()
-        print(len(all_reviews))
-        print(all_reviews)
         all_ratings = 0
-        for review in all_reviews:
-            all_ratings += review.rating_average()
         if len(all_reviews) > 0:
+            for review in all_reviews:
+                all_ratings += review.rating_average()
             return all_ratings / len(all_reviews)
-        else:
-            return ""
+        return 0
