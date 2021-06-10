@@ -1,0 +1,51 @@
+import random
+from datetime import datetime, timedelta
+from django.core.management.base import BaseCommand
+from django_seed import Seed
+from reservations import models as reservation_models
+from rooms import models as room_models
+from users import models as user_models
+
+NAME = "reservations"
+
+
+class Command(BaseCommand):
+    help = f"Create many {NAME}"
+
+    # 최초 입력되는 숫자는 object type이어서 type=int로 설정해주어야함
+    def add_arguments(self, parser):
+        parser.add_argument(
+            "--number",
+            default=2,
+            type=int,
+            help=f"How many {NAME} do you want to create",
+        )
+
+    def handle(self, *args, **options):
+        number = options.get("number")
+        seeder = Seed.seeder()
+        users = user_models.User.objects.all()
+        rooms = room_models.Room.objects.all()
+        seeder.add_entity(
+            reservation_models.Reservation,
+            number,
+            {
+                "status": lambda x: random.choice(
+                    [
+                        "pending",
+                        "confirmed",
+                        "canceled",
+                    ]
+                ),
+                "guest": lambda x: random.choice(users),
+                "room": lambda x: random.choice(rooms),
+                "check_in": lambda x: datetime.now(),  # check_in = 현재로 생성
+                "check_out": lambda x: datetime.now()
+                + timedelta(
+                    days=random.randint(3, 25)
+                ),  # check_out = 현재일 + (3과 25사이 인수) 값만큼 추가
+            },
+        )
+
+        seeder.execute()
+        self.stdout.write(self.style.SUCCESS(f"{number} {NAME} created!"))

@@ -3,5 +3,8 @@
     "python.linting.flake8Enabled": true,
     "python.formatting.provider": "black",
     "editor.formatOnSave": true,
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    },
 }

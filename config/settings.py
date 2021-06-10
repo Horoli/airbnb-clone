@@ -65,10 +65,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "config.urls"
 
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "templates")], # HTML 연결을 위해 DIRS 경로 추가
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

@@ -5,14 +5,19 @@ from django_seed import Seed
 from rooms import models as room_models
 from users import models as user_models
 
+NAME = "rooms"
+
 
 class Command(BaseCommand):
-    help = "Create many rooms.."
+    help = f"Create many {NAME}.."
 
     # 최초 입력되는 숫자는 object type이어서 type=int로 설정해주어야함
     def add_arguments(self, parser):
         parser.add_argument(
-            "--number", default=2, type=int, help="How many rooms do you want to create"
+            "--number",
+            default=2,
+            type=int,
+            help=f"How many {NAME} do you want to create",
         )
 
     def handle(self, *args, **options):
@@ -60,4 +65,4 @@ class Command(BaseCommand):
                 if magic_number % 2 == 0:
                     room.house_rules.add(r)
 
-        self.stdout.write(self.style.SUCCESS(f"{number} rooms created!"))
+        self.stdout.write(self.style.SUCCESS(f"{number} {NAME} created!"))
