@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.db.models.deletion import SET_NULL
 from django_countries.fields import CountryField
 from core import models as core_models
@@ -98,9 +99,14 @@ class Room(core_models.TimeStampedModel):
     def __str__(self):
         return self.name
 
+    # 앞글자 대문자로 저장
     def save(self, *args, **kwargs):
         self.city = str.capitalize(self.city)
         super().save(*args, **kwargs)
+
+    # admin에서 detail로 연결
+    def get_absolute_url(self):
+        return reverse("rooms:detail", kwargs={"pk": self.pk})
 
     # 전체 리뷰 평균
     def total_rationg(self):

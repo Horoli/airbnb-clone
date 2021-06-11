@@ -1,10 +1,21 @@
-from datetime import datetime
-from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 from . import models
 
 
-def all_rooms(request):
-    all_rooms = models.Room.objects.all()
-    return render(
-        request, "rooms/home.html", context={"rooms": all_rooms}
-    )  # html 파일의 변수와 변수명이 같아야함
+class HomeView(ListView):
+
+    """HomeView Definition"""
+
+    model = models.Room
+    paginate_by = 10
+    paginate_orphans = 5
+    ordering = "created"
+    context_object_name = "rooms"
+
+
+class RoomDetail(DetailView):
+
+    """Roomdetail Definition"""
+
+    model = models.Room
+    pk_url_kwarg = "pk"  # defalut = "pk"

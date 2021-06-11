@@ -25,7 +25,7 @@ SECRET_KEY = "i5g3i#*j1__22^q_g4zpu+qu8zowo4*dgn^$jqs^$d4fn^dd71"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = "*"
 
 
 # Application definition
@@ -69,7 +69,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates")], # HTML 연결을 위해 DIRS 경로 추가
+        "DIRS": [os.path.join(BASE_DIR, "templates")],  # HTML 연결을 위해 DIRS 경로 추가
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
