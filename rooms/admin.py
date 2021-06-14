@@ -38,7 +38,7 @@ class RoomAdmin(admin.ModelAdmin):
             "More About the Space",
             {
                 # "classes": ("collapse",),
-                "fields": ("amenities", "facilities", "house_rules"),
+                "fields": ("room_type", "amenities", "facilities", "house_rules"),
             },
         ),
         ("Spaces", {"fields": ("guests", "beds", "bedrooms", "baths")}),
