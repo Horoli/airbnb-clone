@@ -24,7 +24,7 @@ class LoginView(FormView):
 
 def log_out(request):
     logout(request)
-    return redirect(reverse("core:home"))
+    return redirect(reverse("core:home"))  # logout 이후 home으로 이동
 
 
 class SignUpView(FormView):
@@ -45,4 +45,5 @@ class SignUpView(FormView):
         user = authenticate(self.request, username=email, password=password)
         if user is not None:
             login(self.request, user)
+        user.verify_email()  # model.py
         return super().form_valid(form)
