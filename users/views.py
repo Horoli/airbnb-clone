@@ -4,6 +4,8 @@ from django.views.generic import FormView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
+from django.core.files.base import ContentFile
+from django.contrib.auth.forms import UserCreationForm
 from . import forms, models
 
 
@@ -42,11 +44,11 @@ class SignUpView(FormView):
     def form_valid(self, form):
         form.save()
         email = form.cleaned_data.get("email")
-        password = form.cleaned_data.get("password")
+        password = form.cleaned_data.get("password1")
         user = authenticate(self.request, username=email, password=password)
         if user is not None:
             login(self.request, user)
-        user.verify_email()  # model.py
+        user.verify_email()  # path = model.py
         return super().form_valid(form)
 
 
@@ -129,8 +131,6 @@ def github_callback(request):
                         )
                         user.set_unusable_password()
                         user.save()
-                    # if email is not None:
-                    #     user.verify_email()
                     login(request, user)
                     return redirect(reverse("core:home"))
                 else:
@@ -181,6 +181,8 @@ def kakao_callback(request):
         properties = profile_json.get("properties")
         nickname = properties.get("nickname")
         profile_image = properties.get("profile_image")
+        print(properties)
+        print(profile_image)
         try:
             user = models.User.objects.get(email=email)
             if user.login_method != models.User.LOGIN_KAKAO:
@@ -196,6 +198,11 @@ def kakao_callback(request):
 
             user.set_unusable_password()
             user.save()
+            if profile_image is not None:
+                photo_request = requests.get(profile_image)
+                user.avatar.save(
+                    f"{nickname}-avatar", ContentFile(photo_request.content)
+                )
         login(request, user)
         return redirect(reverse("core:home"))
     except KakaoException:
