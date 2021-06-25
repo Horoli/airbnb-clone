@@ -7,4 +7,32 @@
     transition: box-shadow 0.2s linear;
 }
 
+
+.nav_link{
+    @apply ml-8 border-b-2 border-white h-full flex items-center;
+    a {
+        @apply py-10 px-5;
+    }
+    &:hover{
+        @apply border-gray-600;
+    }
+}
+
+.btn{
+    @apply text-center text-lg rounded-sm py-5 font-light w-full;
+}
+
+input{
+    @apply rounded-sm font-light text-lg w-full text-left border border-gray-600 py-5 px-6 mb-4;
+    &:focus{
+        @apply outline-none focus:border-green-500;
+    }
+}
+
+form{
+    input{
+        @apply mb-3;
+    }
+}
+
 @tailwind utilities;
