@@ -20,13 +20,32 @@
 
 .btn{
     @apply text-center text-lg rounded-sm py-5 font-light w-full;
+    &.btn--small{
+        @apply py-3 rounded-lg;
+    }
 }
 
-input{
+.btn-link{
+    @apply text-center text-lg py-3 rounded-lg font-light w-full text-white bg-red-500;
+}
+
+input,
+textarea,
+select{
     @apply rounded-sm font-light text-lg w-full text-left border border-gray-600 py-5 px-6 mb-4;
     &:focus{
         @apply outline-none focus:border-green-500;
     }
+}
+
+textarea{
+    resize:none;
+    height:100px;
+}
+
+select{
+    height:50px;
+    padding:5px;
 }
 
 form{
