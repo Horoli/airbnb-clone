@@ -100,10 +100,13 @@
             </div>
         </div>
     </div>
-</div>
-<div class="w-1/3">
+    <div class="w-1/3">
 
-</div>
+        {% if room.host == user %}
+        <a class="btn-link block" href="{% url 'rooms:edit' room.pk %}"> Edit Room </a>
+        {% endif %}
+
+    </div>
 </div>
 <!-- <div>
     <h1>{{room.name}}</h1>
