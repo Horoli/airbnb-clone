@@ -1,6 +1,13 @@
+from typing_extensions import ParamSpecArgs
 from django.contrib.auth import login
 from django.http.response import Http404
-from django.views.generic import ListView, DetailView, View, UpdateView
+from django.views.generic import (
+    ListView,
+    DetailView,
+    View,
+    UpdateView,
+    FormView,
+)
 from django.shortcuts import render, redirect, reverse
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
@@ -175,3 +182,35 @@ class EditPhotoView(user_mixins.LoggedInOnlyView, SuccessMessageMixin, UpdateVie
         room_pk = self.kwargs.get("room_pk")
 
         return reverse("rooms:photos", kwargs={"pk": room_pk})
+
+
+class AddPhotoView(user_mixins.LoggedInOnlyView, FormView):
+
+    model = models.Photo
+    template_name = "rooms/photo_create.html"
+    fields = (
+        "caption",
+        "file",
+    )
+    form_class = forms.CreatePhotoForm
+
+    # SuccessMessageMixin을 사용하면 FormView를 사용할 수 없어서 form_valid 메소드에 메세지를 추가
+    def form_valid(self, form):
+        pk = self.kwargs.get("pk")
+        form.save(pk)
+        messages.success(self.request, "Photo Uploaded")
+        return redirect(reverse("rooms:photos", kwargs={"pk": pk}))
+
+
+class CreateRoomView(user_mixins.LoggedInOnlyView, FormView):
+
+    form_class = forms.CreateRoomForm
+    template_name = "rooms/room_create.html"
+
+    def form_valid(self, form):
+        room = form.save()
+        room.host = self.request.user
+        room.save()
+        form.save_m2m()  # ManyToManyField를 저장하기 위해 활용
+        messages.success(self.request, "Room Uploaded")
+        return redirect(reverse("rooms:detail", kwargs={"pk": room.pk}))
