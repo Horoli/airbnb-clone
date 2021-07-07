@@ -2,6 +2,7 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from core import models as core_models
+from . import managers
 
 
 class BookedDay(core_models.TimeStampedModel):
@@ -42,6 +43,7 @@ class Reservation(core_models.TimeStampedModel):
     room = models.ForeignKey(
         "rooms.Room", related_name="reservations", on_delete=models.CASCADE
     )
+    objects = managers.CustomReservationManager()
 
     def in_progress(self):
         now = timezone.now().date()
