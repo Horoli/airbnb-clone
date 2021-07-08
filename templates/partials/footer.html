@@ -1,3 +1,8 @@
-<footer class="container mx-auto text-center py-10 border-t bg-gray-700 text-white">
-    &copy; 2021 Nbnb, Inc. All rights reserved.
+{% load i18n %}
+
+<footer class="container mx-auto text-center py-10 border-t bg-gray-700 text-white flex flex-col">
+    <span>
+        {% trans "Please don't copy us." %}
+    </span>
+    <span>&copy; 2021 Nbnb, Inc. {% trans "All rights reserved" %}.</span>
 </footer>
