@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 
@@ -11,7 +12,7 @@ class EmailLoginOnlyView(UserPassesTestMixin):
     def handle_no_permission(self):
         messages.error(
             self.request,
-            "this page is only for email login users.(not Kakao & github)",
+            _("this page is only for email login users.(not Kakao & github)"),
         )
         return redirect("core:home")
 

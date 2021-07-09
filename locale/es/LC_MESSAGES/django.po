@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-08 16:42+0900\n"
+"POT-Creation-Date: 2021-07-09 17:37+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,14 +18,63 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\templates\base.html:27
+#: .\templates\base.html:28
 msgid "Search by City"
-msgstr ""
+msgstr "Buscar por Ciudad"
 
-#: .\templates\partials\footer.html:5
+#: .\templates\partials\footer.html:6
 msgid "Please don't copy us."
+msgstr "Por favor no nos copies."
+
+#: .\templates\partials\footer.html:8
+msgid "All rights reserved"
+msgstr "Todos lo derechos reservados."
+
+#: .\templates\rooms\room_list.html:30
+#, python-format
+msgid "Page %(current_page)s of %(total_page)s"
+msgstr "Pagina %(current_page)s de %(total_page)s"
+
+#: .\users\mixins.py:15
+msgid "this page is only for email login users.(not Kakao & github)"
+msgstr "esta página es solo para usuarios de inicio de sesión de correo electrónico (no Kakao y github)"
+
+#: .\users\models.py:20
+msgid "Male"
+msgstr "Hombre"
+
+#: .\users\models.py:21
+msgid "Female"
+msgstr "Mujer"
+
+#: .\users\models.py:22
+msgid "Other"
+msgstr "Otro"
+
+#: .\users\models.py:29
+msgid "English"
+msgstr "Inglés"
+
+#: .\users\models.py:30
+msgid "Korean"
+msgstr "Coreano"
+
+#: .\users\models.py:52
+msgid "gender"
+msgstr "genero"
+
+#: .\users\models.py:54
+msgid "bio"
+msgstr "biografia"
+
+#: .\users\models.py:57
+msgid "langauge"
+msgstr "language"
+
+#: .\users\models.py:64
+msgid "currency"
 msgstr ""
 
-#: .\templates\partials\footer.html:7
-msgid "All rights reserved"
-msgstr ""
+#: .\users\models.py:89
+msgid "Verify Airbnb Account"
+msgstr "Verifical Cuenta de Airbnb"
