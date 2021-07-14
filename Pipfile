@@ -4,20 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "==2.2.5"
-pillow = "*"
-django-countries = "*"
-django-seed = "*"
-django-dotenv = "*"
-requests = "*"
+pathspec = "*"
+django = "*"
 
 [dev-packages]
-black = "*"
-flake8 = "*"
-django-countries = "*"
+awsebcli = "*"
 
 [requires]
 python_version = "3.7"
-
-[pipenv]
-allow_prereleases = true

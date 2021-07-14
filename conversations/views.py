@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import redirect, reverse, render
@@ -43,3 +44,8 @@ class ConversationDetailView(View):
                 message=message, user=self.request.user, conversation=conversation
             )
         return redirect(reverse("conversations:detail", kwargs={"pk": pk}))
+=======
+from django.shortcuts import render
+
+# Create your views here.
+>>>>>>> parent of 5047d33 (2021-07-11)
