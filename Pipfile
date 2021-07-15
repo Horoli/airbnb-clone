@@ -6,9 +6,19 @@ name = "pypi"
 [packages]
 pathspec = "*"
 django = "*"
+pipenv-to-requirements = "*"
+django-dotenv = "*"
+django-seed = "*"
+django-countries = "*"
+requests = "*"
 
 [dev-packages]
 awsebcli = "*"
+pillow = "*"
+black = "*"
 
 [requires]
 python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true
