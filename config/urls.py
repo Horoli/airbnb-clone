@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+import os
 
 
 def trigger_error(request):
@@ -30,7 +31,7 @@ urlpatterns = [
     path("reservations/", include("reservations.urls", namespace="reservations")),
     path("reviews/", include("reviews.urls", namespace="reviews")),
     path("lists/", include("lists.urls", namespace="lists")),
-    path("admin/", admin.site.urls),
+    path("admin", admin.site.urls),
     path("sentry-debug/", trigger_error),
 ]
 
