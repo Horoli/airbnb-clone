@@ -12,6 +12,7 @@ django-seed = "*"
 django-countries = "*"
 requests = "*"
 psycopg2 = "*"
+sentry-sdk = "==0.13.2"
 
 [dev-packages]
 awsebcli = "*"
